@@ -42,6 +42,7 @@ func Main(args map[string]interface{}) (*Response, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	
 	//Replacing __ow_headers since I cannot use key with underscore in struct
 	replace := "__ow_headers"
 	newValue := "header"
