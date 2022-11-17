@@ -14,8 +14,8 @@ type Headers struct {
 }
 
 type Args struct {
-	Num1 int `json:"num1"`
-	Num2 int `json:"num2"`
+	Num1   int `json:"num1"`
+	Num2   int `json:"num2"`
 	Header Headers
 }
 
@@ -42,7 +42,7 @@ func Main(args map[string]interface{}) (*Response, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	
+
 	//Replacing __ow_headers since I cannot use key with underscore in struct
 	replace := "__ow_headers"
 	newValue := "header"
@@ -51,9 +51,9 @@ func Main(args map[string]interface{}) (*Response, error) {
 	modifiedString := strings.Replace(string(jsonStr), replace, newValue, n)
 
 	r := Args{}
-    if err := json.Unmarshal([]byte(modifiedString), &r); err != nil {
-        fmt.Println(err)
-    }
+	if err := json.Unmarshal([]byte(modifiedString), &r); err != nil {
+		fmt.Println(err)
+	}
 
 	fmt.Println(secret)
 	// Check for auth using token passed in header
@@ -66,10 +66,10 @@ func Main(args map[string]interface{}) (*Response, error) {
 	}
 
 	//Returning result
-    sum = r.Num1 + r.Num2
+	sum = r.Num1 + r.Num2
 
 	return &Response{
 		StatusCode: http.StatusOK,
-		Body: sum,
+		Body:       sum,
 	}, nil
 }
